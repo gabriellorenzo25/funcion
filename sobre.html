@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Sobre Nós</title>
+    <link rel="stylesheet" href="TCC.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Adicione isto ao seu CSS */
+        main {
+            margin-top: 80px; /* Ajuste conforme necessário */
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="sobre.html">Sobre Nós</a></li>
+                <li class="search-container">
+                    <input type="text" id="searchInput" placeholder="Pesquisar...">
+                    <button onclick="performSearch()">🔍</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div>
+            <h1>Olá</h1>
+            <h2>Somos o GABRIEL e LORENZO </h2>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Rodapé tradicional -->
+    </footer>
+    <script>
+        function performSearch() {
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            const searchButton = document.getElementById("searchButton");
+            const feedback = document.getElementById("feedback");
+    
+            // Animação no botão
+            searchButton.disabled = true;
+            searchButton.innerHTML = "Buscando...";
+    
+            // Mapeamento simples de páginas com base nas palavras-chave
+            const pages = {
+                "home": "home.html",
+                "sobre": "sobre.html",
+                // Adicione mais páginas conforme necessário
+            };
+    
+            setTimeout(() => {
+                searchButton.disabled = false;
+                searchButton.innerHTML = "Buscar";
+    
+                if (pages[query]) {
+                    window.location.href = pages[query];
+                } else {
+                    feedback.style.display = "block";
+                    feedback.innerHTML = "Não encontramos exatamente o que procura. Que tal tentar 'componentes do computador'?";
+                }
+            }, 1000); // Simula um pequeno delay
+        }
+    
+        // Função para ativar o Enter em vários elementos
+        document.addEventListener("keypress", function (event) {
+            if (event.key === "Enter") {
+                const focusedElement = document.activeElement;
+    
+                // Verifica se o foco está na barra de pesquisa
+                if (focusedElement.id === "searchInput") {
+                    event.preventDefault(); // Evita o comportamento padrão
+                    performSearch(); // Executa a busca
+                }
+                
+                // Verifica se o foco está nos botões "Home" ou "Sobre"
+                if (focusedElement.id === "homeButton") {
+                    window.location.href = "home.html";
+                } else if (focusedElement.id === "sobreButton") {
+                    window.location.href = "sobre.html";
+                }
+            }
+        });
+    </script>
+</body>
+</html>
