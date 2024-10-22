@@ -5,80 +5,77 @@
     <title>Sobre Nós</title>
     <link rel="stylesheet" href="tcc.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
 </head>
 <body>
     <header class="navbar">
         <nav>
             <ul>
-                <li><a href="home.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="sobre.html">Sobre Nós</a></li>
                 <li class="search-container">
                     <input type="text" id="searchInput" placeholder="Pesquisar...">
-                    <button onclick="performSearch()">🔍</button>
                 </li>
             </ul>
+            
         </nav>
+        
     </header>
+    
 
-    <main>
         <div>
             <h1>Olá</h1>
-            <h2>Somos o GABRIEL e LORENZO </h2>
+            <h2>Somos o GABRIEL e LORENZO</h2>
         </div>
-    </main>
-
-    <footer>
-        <!-- Rodapé tradicional -->
-    </footer>
-    <script>
+  
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
         function performSearch() {
             const query = document.getElementById("searchInput").value.toLowerCase();
-            const searchButton = document.getElementById("searchButton");
-            const feedback = document.getElementById("feedback");
-    
-            // Animação no botão
-            searchButton.disabled = true;
-            searchButton.innerHTML = "Buscando...";
-    
-            // Mapeamento simples de páginas com base nas palavras-chave
+
+            // mapeamento simples de páginas com base nas palavras-chave
             const pages = {
                 "home": "index.html",
                 "sobre": "sobre.html",
-                // Adicione mais páginas conforme necessário
+                "roteador wifi": "roteador-wifi.html",
+                "cabo de rede": "cabo-rede.html",
+                "cabo sata": "cabo-sata.html",
+                "cabo vga": "cabo-vga.html",
+                "cabo de alimentação": "cabo-alimentação.html",
+                "leitor de cd": "leitor-cd.html",
+                "processador": "processador.html",
+                "memoria ram": "memoria-ram.html",
+                "disquete": "disquete.html",
+                "hd (hard disc)": "hd-Memória.html",
+                "placa de vídeo": "placa-video.html",
+                "raspberry": "raspberry.html",
+                "placa mãe": "placa-mãe.html",
+                "fonte de energia": "fonte_de_energia.html",
+                "cooler": "cooler.html"
             };
-    
-            setTimeout(() => {
-                searchButton.disabled = false;
-                searchButton.innerHTML = "Buscar";
-    
-                if (pages[query]) {
-                    window.location.href = pages[query];
-                } else {
-                    feedback.style.display = "block";
-                    feedback.innerHTML = "Não encontramos exatamente o que procura. Que tal tentar 'componentes do computador'?";
-                }
-            }, 1000); // Simula um pequeno delay
-        }
-    
-        // Função para ativar o Enter em vários elementos
-        document.addEventListener("keypress", function (event) {
-            if (event.key === "Enter") {
-                const focusedElement = document.activeElement;
-    
-                // Verifica se o foco está na barra de pesquisa
-                if (focusedElement.id === "searchInput") {
-                    event.preventDefault(); // Evita o comportamento padrão
-                    performSearch(); // Executa a busca
-                }
-                
-                // Verifica se o foco está nos botões "Home" ou "Sobre"
-                if (focusedElement.id === "homeButton") {
-                    window.location.href = "home.html";
-                } else if (focusedElement.id === "sobreButton") {
-                    window.location.href = "sobre.html";
+
+            // verifica se a consulta contém palavras-chave
+            for (const [key, value] of Object.entries(pages)) {
+                if (key.includes(query)) {
+                    window.location.href = value;
+                    return;
                 }
             }
+
+            alert("Pesquise componentes do computador");
+        }
+
+        // acionar a função quando a tecla "Enter" for pressionada
+        document.getElementById("searchInput").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                performSearch();
+            }
         });
-    </script>
+    }); 
+        </script>
+    <footer>
+        <p>© 2024 Componentes de Computador. Todos os direitos reservados.</p>
+    </footer>
+    
 </body>
 </html>
